@@ -4,16 +4,17 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 
-import com.codepath.apps.basictwitter.models.Tweet;
-import com.loopj.android.http.JsonHttpResponseHandler;
-
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.codepath.apps.basictwitter.models.Tweet;
+import com.loopj.android.http.JsonHttpResponseHandler;
 
 public class TimelineActivity extends Activity {
 
@@ -83,4 +84,28 @@ public class TimelineActivity extends Activity {
 			}
 		}, lastTweetID);
 	}
+	
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.timeline, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_compose:
+                openCompose();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+    
+    public void openCompose() {
+        Intent i = new Intent(getApplicationContext(), ComposeActivity.class);
+        startActivity(i);
+    }
 }
