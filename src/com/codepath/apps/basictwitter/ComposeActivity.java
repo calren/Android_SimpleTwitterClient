@@ -5,11 +5,13 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.codepath.apps.basictwitter.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 public class ComposeActivity extends Activity {
@@ -18,9 +20,10 @@ public class ComposeActivity extends Activity {
 	private EditText tweetMsg;
 	private Button submitBtn;
 	Context context;
-	String post = "";
-	String user = "";
 
+	JSONObject newestTweet;
+
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,23 +40,16 @@ public class ComposeActivity extends Activity {
 		tweetMsg = (EditText) findViewById(R.id.etTweet);
 		
 		postStatus(tweetMsg.getText().toString());
-//		System.out.println("post = " + post);
-//		System.out.println("user = " + user);
-//		finish();
+
 	}
 	
 	public void postStatus(String status) {
+		Intent data = new Intent();
+		
 		client.postStatus(new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(JSONObject json) {
-				try {
-					System.out.println(json.getString("text"));
-					System.out.println(json.getJSONObject("user").getString("screen_name"));
-					System.out.println(json.getJSONObject("user").getString("name"));
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				newestTweet = json;
 			}
 			
 			@Override
@@ -61,5 +57,10 @@ public class ComposeActivity extends Activity {
 				System.out.println("lame");
 			}
 		}, status);
+		
+		Tweet tweet = new Tweet().fromJSON(newestTweet);
+		
+		data.putExtra("tweet", tweet);
+		finish();
 	}
 }

@@ -128,4 +128,14 @@ public class TimelineActivity extends Activity {
         Intent i = new Intent(TimelineActivity.this, ComposeActivity.class);
         startActivityForResult(i, 100);
     }
+    
+    @Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	  if (resultCode == RESULT_OK) {
+		  Tweet tweet = (Tweet) getIntent().getSerializableExtra("tweet");
+		  aTweets.insert(tweet, 0);
+		  System.out.println("most recent tweet: " + aTweets.getItem(0).getBody());
+
+	  }
+	}
 }
