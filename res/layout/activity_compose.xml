@@ -4,4 +4,28 @@
     android:layout_height="match_parent"
     tools:context="${packageName}.${activityClass}" >
 
+    <EditText
+        android:id="@+id/etTweet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="162dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:hint="What's on your mind?" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etTweet"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="69dp"
+        android:text="Tweet"
+        android:onClick="submitTweet" />
+
 </RelativeLayout>
