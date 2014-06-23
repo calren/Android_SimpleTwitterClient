@@ -12,6 +12,7 @@ public class Tweet {
 	private long uid;
 	private String createdAt;
 	private User user;
+	private String id;
 	
 	public static Tweet fromJSON(JSONObject jsonObject) {
 		Tweet tweet = new Tweet();
@@ -20,6 +21,7 @@ public class Tweet {
 			tweet.uid = jsonObject.getLong("id");
 			tweet.createdAt = jsonObject.getString("created_at");
 			tweet.user = User.fromJSON(jsonObject.getJSONObject("user"));
+			tweet.id = jsonObject.getString("id");
 		} catch (JSONException e ) {
 			e.printStackTrace();
 			return null;
@@ -43,6 +45,10 @@ public class Tweet {
 
 	public User getUser() {
 		return user;
+	}
+	
+	public String getId() {
+		return id;
 	}
 
 	public static ArrayList<Tweet> fromJSONArray(JSONArray jsonArray) {
