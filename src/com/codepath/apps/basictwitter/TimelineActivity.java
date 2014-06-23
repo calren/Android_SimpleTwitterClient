@@ -1,6 +1,5 @@
 package com.codepath.apps.basictwitter;
 
-
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -15,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.codepath.apps.basictwitter.models.Tweet;
+import com.loopj.android.http.JsonHttpResponseHandler;
 
 import eu.erikw.*;
 import eu.erikw.PullToRefreshListView.OnRefreshListener;
@@ -25,7 +25,7 @@ public class TimelineActivity extends Activity {
 	private ArrayList<Tweet> tweets;
 	private ArrayAdapter<Tweet> aTweets;
 	
-	private ListView lvTweets;
+	private PullToRefreshListView lvTweets;
 	private String max_id;
 	
 	@Override
@@ -33,13 +33,13 @@ public class TimelineActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_timeline);
 		client = TwitterApplication.getRestClient();
-//		populateTimeline();
-		lvTweets = (ListView) findViewById(R.id.lvTweets);
+		populateTimeline();
+		lvTweets = (PullToRefreshListView) findViewById(R.id.lvTweets);
 		tweets = new ArrayList<Tweet>();
 		aTweets = new TweetArrayAdapter(this, tweets);
 		lvTweets.setAdapter(aTweets);
 		lvTweets.setOnScrollListener(new EndlessScrollListener() {
-		    @Override
+			@Override
 		    public void onLoadMore(int page, int totalItemsCount) {
 	                // Triggered only when new data needs to be appended to the list
 	                // Add whatever code is needed to append new items to your AdapterView
@@ -47,27 +47,27 @@ public class TimelineActivity extends Activity {
 	                // or customLoadMoreDataFromApi(totalItemsCount); 
 		    }
 	        });
-//		lvTweets.setOnRefreshListener(new OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                // Your code to refresh the list contents
-//                // Make sure you call listView.onRefreshComplete()
-//                // once the loading is done. This can be done from here or any
-//                // place such as when the network request has completed successfully.
-//                fetchTimelineAsync(0);
-//            }
-//        });
+		lvTweets.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list contents
+                // Make sure you call listView.onRefreshComplete()
+                // once the loading is done. This can be done from here or any
+                // place such as when the network request has completed successfully.
+                fetchTimelineAsync(0);
+            }
+        });
 	}
 	
 	public void fetchTimelineAsync(int page) {
-//        populateTimeline(max_id);
+        populateTimeline();
     }
 	
 	public void customLoadMoreDataFromApi(int offset) {
 	      // This method probably sends out a network request and appends new data items to your adapter. 
 	      // Use the offset value and add it as a parameter to your API request to retrieve paginated data.
 	      // Deserialize API response and then construct new objects to append to the adapter
-//		populateTimeline(max_id);
+		populateTimeline(max_id);
 	}
 	
 	public void populateTimeline() {
@@ -77,6 +77,7 @@ public class TimelineActivity extends Activity {
 			public void onSuccess(JSONArray json) {
 				aTweets.addAll(Tweet.fromJSONArray(json));
 				max_id = aTweets.getItem(tweets.size()-1).getId();
+				lvTweets.onRefreshComplete();
 			}
 			
 			@Override
