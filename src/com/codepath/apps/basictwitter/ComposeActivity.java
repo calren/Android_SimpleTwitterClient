@@ -37,44 +37,30 @@ public class ComposeActivity extends Activity {
 	}
 	
 	public void submitTweet(View v) {
-		Intent data = new Intent();
 
 		tweetMsg = (EditText) findViewById(R.id.etTweet);
 		
-		String name = postStatus(tweetMsg.getText().toString());
-		System.out.println("name = " + name);
-		
-		data.putExtra("tweet", "");
-		finish();
-
+		postStatus(tweetMsg.getText().toString());
 	}
 	
-	String name = "";
-	public String postStatus(String status) {
+	public void postStatus(String status) {
 
 		client.postStatus(new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(JSONObject json) {
-				String a = "";
-				try {
-					name = json.getJSONObject("user").getString("name");
-					System.out.println(json.getJSONObject("user").getString("name"));
-					newestTweet = json;
-
-				} catch (JSONException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				newestTweet = json;
+				Intent data = new Intent();	
+				Tweet tweet = Tweet.fromJSON(json);
+				data.putExtra("tweet", tweet);
+				data.putExtra("name", "ThisismyName");
+				setResult(100, data);
+				finish();
 			}
 			
 			@Override
 			public void onFailure(Throwable e, String s) {
-				System.out.println("lame");
+				e.printStackTrace();
 			}
 		}, status);
-		
-		return name;
-		
+				
 	}
 }

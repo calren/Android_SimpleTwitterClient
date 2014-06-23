@@ -131,11 +131,17 @@ public class TimelineActivity extends Activity {
     
     @Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	  if (resultCode == RESULT_OK) {
-		  Tweet tweet = (Tweet) getIntent().getSerializableExtra("tweet");
-		  aTweets.insert(tweet, 0);
-		  System.out.println("most recent tweet: " + aTweets.getItem(0).getBody());
-
-	  }
+	  Tweet tweet = (Tweet) data.getSerializableExtra("tweet");
+	  aTweets.insert(tweet, 0);
+      aTweets.notifyDataSetChanged();
+//	  lvTweets.setSelection(0);
+//	  if (resultCode == RESULT_OK) {
+//		  String name = data.getExtras().getString("tweetName");
+//		  System.out.println("Result from activity is : " + name);
+////		  Tweet tweet = (Tweet) getIntent().getSerializableExtra("tweet");
+////		  aTweets.insert(tweet, 0);
+////		  System.out.println("most recent tweet: " + aTweets.getItem(0).getBody());
+//
+//	  }
 	}
 }
