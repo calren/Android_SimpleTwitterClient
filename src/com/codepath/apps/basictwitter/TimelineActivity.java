@@ -49,6 +49,7 @@ public class TimelineActivity extends Activity {
 	      // This method probably sends out a network request and appends new data items to your adapter. 
 	      // Use the offset value and add it as a parameter to your API request to retrieve paginated data.
 	      // Deserialize API response and then construct new objects to append to the adapter
+		populateTimeline(max_id);
 	    }
 	
 	public void populateTimeline() {
@@ -67,7 +68,7 @@ public class TimelineActivity extends Activity {
 		});
 	}
 	
-	public void populateTimeline(String lasTweetID) {
+	public void populateTimeline(String lastTweetID) {
 		client.getHomeTimeline(new JsonHttpResponseHandler() {
 			
 			@Override
@@ -80,6 +81,6 @@ public class TimelineActivity extends Activity {
 			public void onFailure(Throwable e, String s) {
 				Log.d("debug", e.toString());
 			}
-		});
+		}, lastTweetID);
 	}
 }
