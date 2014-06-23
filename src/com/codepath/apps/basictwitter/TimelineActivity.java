@@ -125,7 +125,7 @@ public class TimelineActivity extends Activity {
     }
     
     public void openCompose() {
-        Intent i = new Intent(getApplicationContext(), ComposeActivity.class);
-        startActivity(i);
+        Intent i = new Intent(TimelineActivity.this, ComposeActivity.class);
+        startActivityForResult(i, 100);
     }
 }
