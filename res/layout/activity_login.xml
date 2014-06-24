@@ -9,11 +9,24 @@
     tools:context=".LoginActivity" >
 
     <Button
-        android:layout_width="match_parent"
+        android:id="@+id/button1"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"
+        android:layout_marginBottom="118dp"
+        android:background="#00B2EE"
         android:onClick="loginToRest"
-        android:text="@string/login_label" />
+        android:text="@string/login_label"
+        android:textColor="#FFF" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="55dp"
+        android:src="@drawable/twitter3" />
 
 </RelativeLayout>
