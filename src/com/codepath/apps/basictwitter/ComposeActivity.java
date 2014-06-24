@@ -21,7 +21,6 @@ public class ComposeActivity extends Activity {
 	
 	private TwitterClient client;
 	private EditText tweetMsg;
-	private Button submitBtn;
 	Context context;
 
 	JSONObject newestTweet;
@@ -58,7 +57,6 @@ public class ComposeActivity extends Activity {
 
 		
 		tweetMsg = (EditText) findViewById(R.id.etTweet);
-		submitBtn = (Button) findViewById(R.id.btnSubmit);
 		
 		context = getApplicationContext();
 		setContentView(R.layout.activity_compose);
