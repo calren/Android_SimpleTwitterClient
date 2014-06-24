@@ -1,6 +1,5 @@
 package com.codepath.apps.basictwitter;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -10,9 +9,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.codepath.apps.basictwitter.models.Tweet;
+import com.codepath.apps.basictwitter.models.User;
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 public class ComposeActivity extends Activity {
 	
@@ -28,10 +31,35 @@ public class ComposeActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
+		
+		client = TwitterApplication.getRestClient();
+
+		client.getAccountInfo(new JsonHttpResponseHandler() {
+			@Override
+			public void onSuccess(JSONObject json) {
+				ImageView ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage);
+				TextView tvUserName = (TextView) findViewById(R.id.tvUserName);
+				TextView tvScreenName = (TextView) findViewById(R.id.tvScreenname);
+				System.out.println("loaded");
+				ImageLoader imageLoader = ImageLoader.getInstance();
+				User user = User.fromJSON(json);
+
+
+				imageLoader.displayImage(user.getProfileImageUrl(), ivProfileImage);
+				tvUserName.setText(user.getName());
+				tvScreenName.setText("@" + user.getScreenName());
+			}
+			
+			@Override
+			public void onFailure(Throwable e, String s) {
+				e.printStackTrace();
+			}
+		});
+
+		
 		tweetMsg = (EditText) findViewById(R.id.etTweet);
 		submitBtn = (Button) findViewById(R.id.btnSubmit);
 		
-		client = TwitterApplication.getRestClient();
 		context = getApplicationContext();
 		setContentView(R.layout.activity_compose);
 	}

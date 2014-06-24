@@ -26,7 +26,7 @@
 
         <activity
             android:name="com.codepath.apps.basictwitter.LoginActivity"
-            android:label="@string/app_name" >
+            android:label="Login" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,11 +45,11 @@
         </activity>
         <activity
             android:name="com.codepath.apps.basictwitter.TimelineActivity"
-            android:label="@string/title_activity_timeline" >
+            android:label="Timeline" >
         </activity>
         <activity
             android:name="com.codepath.apps.basictwitter.ComposeActivity"
-            android:label="@string/title_activity_compose" >
+            android:label="Compose" >
         </activity>
     </application>
 
