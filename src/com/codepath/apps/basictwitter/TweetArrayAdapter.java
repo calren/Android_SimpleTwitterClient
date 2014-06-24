@@ -42,7 +42,13 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 		tvBody.setText(tweet.getBody());
 		tvScreenName.setText("@" + tweet.getUser().getScreenName());
 
-		String date = tweet.getCreatedAt();
+		String date = tweet.getCreatedAt().replace(" ago", "");
+		date = date.replace(" minutes", "m");
+		date = date.replace(" hours", "h");
+		date = date.replace(" days", "d");
+		if (date.contains("seconds")) {
+			date = "Just now";
+		}
 		
 		tvTimeCreated.setText(date);
 		
