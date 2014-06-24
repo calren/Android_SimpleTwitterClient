@@ -134,14 +134,5 @@ public class TimelineActivity extends Activity {
 	  Tweet tweet = (Tweet) data.getSerializableExtra("tweet");
 	  aTweets.insert(tweet, 0);
       aTweets.notifyDataSetChanged();
-//	  lvTweets.setSelection(0);
-//	  if (resultCode == RESULT_OK) {
-//		  String name = data.getExtras().getString("tweetName");
-//		  System.out.println("Result from activity is : " + name);
-////		  Tweet tweet = (Tweet) getIntent().getSerializableExtra("tweet");
-////		  aTweets.insert(tweet, 0);
-////		  System.out.println("most recent tweet: " + aTweets.getItem(0).getBody());
-//
-//	  }
 	}
 }

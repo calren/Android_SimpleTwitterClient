@@ -27,4 +27,21 @@
         android:layout_below="@+id/tvUserName"
         android:text="Tweet body" />
 
+    <TextView
+        android:id="@+id/tvScreenname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/tvBody"
+        android:text="screenname" />
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tvBody"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="18dp"
+        android:text="time posted" />
+
 </RelativeLayout>
