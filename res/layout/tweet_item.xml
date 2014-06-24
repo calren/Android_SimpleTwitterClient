@@ -31,17 +31,20 @@
         android:id="@+id/tvScreenname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/tvBody"
-        android:text="screenname" />
+        android:layout_above="@+id/tvBody"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/tvUserName"
+        android:text="screenname"
+        android:textColor="#a8a8a8" />
 
     <TextView
         android:id="@+id/tvTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/tvBody"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="18dp"
-        android:text="time posted" />
+        android:layout_alignParentTop="true"
+         android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:text="time posted"
+        android:textColor="#a8a8a8"  />
 
 </RelativeLayout>

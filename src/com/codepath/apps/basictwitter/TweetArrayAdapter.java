@@ -38,14 +38,11 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 		TextView tvTimeCreated = (TextView) v.findViewById(R.id.tvTime);
 		
 		imageLoader.displayImage(tweet.getUser().getProfileImageUrl(), ivProfileImage);
-		tvUserName.setText(tweet.getUser().getScreenName());
+		tvUserName.setText(tweet.getUser().getName());
 		tvBody.setText(tweet.getBody());
 		tvScreenName.setText("@" + tweet.getUser().getScreenName());
-		
-		//DateUtils.getRelativeTimeSpanString (long time, long now, long minResolution)
+
 		String date = tweet.getCreatedAt();
-//		CharSequence date = DateUtils.getRelativeTimeSpanString(Long.valueOf(tweet.getCreatedAt()).longValue(), 
-//				System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS);
 		
 		tvTimeCreated.setText(date);
 		
