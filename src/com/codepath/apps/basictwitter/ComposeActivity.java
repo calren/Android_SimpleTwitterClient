@@ -52,7 +52,7 @@ public class ComposeActivity extends Activity {
 				Tweet tweet = Tweet.fromJSON(json);
 				data.putExtra("tweet", tweet);
 				data.putExtra("name", "ThisismyName");
-				setResult(100, data);
+				setResult(RESULT_OK, data);
 				finish();
 			}
 			

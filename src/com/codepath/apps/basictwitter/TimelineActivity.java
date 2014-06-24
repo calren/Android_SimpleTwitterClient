@@ -131,8 +131,10 @@ public class TimelineActivity extends Activity {
     
     @Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	  Tweet tweet = (Tweet) data.getSerializableExtra("tweet");
-	  aTweets.insert(tweet, 0);
-      aTweets.notifyDataSetChanged();
+    	if (resultCode == RESULT_OK) {
+    		Tweet tweet = (Tweet) data.getSerializableExtra("tweet");
+    		aTweets.insert(tweet, 0);
+    	    aTweets.notifyDataSetChanged();
+    	}
 	}
 }
