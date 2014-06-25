@@ -22,5 +22,5 @@ Completed user stories:
  
 Walkthrough of all user stories:
 
-![Video Walkthrough](twitter.gif)
+![Video Walkthrough](twitter2.gif)
 
