@@ -10,13 +10,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.codepath.apps.basictwitter.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
-import eu.erikw.*;
+import eu.erikw.PullToRefreshListView;
 import eu.erikw.PullToRefreshListView.OnRefreshListener;
 
 public class TimelineActivity extends Activity {
@@ -136,5 +136,9 @@ public class TimelineActivity extends Activity {
     		aTweets.insert(tweet, 0);
     	    aTweets.notifyDataSetChanged();
     	}
+	}
+    
+    public void replyOrDelete(View v) {
+		
 	}
 }
