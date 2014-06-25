@@ -3,11 +3,12 @@ package com.codepath.apps.basictwitter;
 import java.util.List;
 
 import android.content.Context;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 	
 	private static Tweet tweet;
+	private ImageButton ibStar;
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -28,7 +30,7 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 		} else {
 			v = convertView;
 		}
-		
+				
 		ImageView ivProfileImage = (ImageView) v.findViewById(R.id.ivProfileImage);
 		TextView tvUserName = (TextView) v.findViewById(R.id.tvUserName);
 		TextView tvBody = (TextView) v.findViewById(R.id.tvBody);
@@ -36,6 +38,17 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 		ImageLoader imageLoader = ImageLoader.getInstance();
 		TextView tvScreenName = (TextView) v.findViewById(R.id.tvScreenname);
 		TextView tvTimeCreated = (TextView) v.findViewById(R.id.tvTime);
+		
+		ibStar = (ImageButton) v.findViewById(R.id.btnStar);
+		
+		ibStar.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				ibStar.setImageResource(R.drawable.ic_action_star);
+				ibStar.refreshDrawableState();
+				System.out.println("filled star");
+			}
+		});
 		
 		imageLoader.displayImage(tweet.getUser().getProfileImageUrl(), ivProfileImage);
 		tvUserName.setText(tweet.getUser().getName());
@@ -54,7 +67,7 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 		
 		return v;
 	}
-
+	
 	public TweetArrayAdapter(Context context, List<Tweet> tweets) {
 		super(context, 0, tweets);
 

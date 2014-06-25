@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="#FFF" >
 
     <ImageView
         android:id="@+id/ivProfileImage"
@@ -48,14 +49,34 @@
         android:textColor="#a8a8a8"  />
 
     <ImageButton
-        android:id="@+id/imageButton1"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:id="@+id/btnReply"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
         android:layout_alignRight="@+id/tvTime"
         android:layout_below="@+id/tvBody"
         android:layout_marginRight="31dp"
         android:src="@drawable/ic_action_reply"
         android:background="#FFF"
-        android:onclick="replyOrDelete" />
+        android:onClick="replyOrDelete" />
+
+    <ImageButton
+        android:id="@+id/btnStar"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignBottom="@+id/btnReply"
+        android:layout_toLeftOf="@+id/btnReply"
+        android:src="@drawable/ic_action_star_before"
+        android:background="#FFF" />
+
+    <ImageButton
+        android:id="@+id/btnRetweet"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_alignBottom="@+id/btnReply"
+        android:layout_marginRight="20dp"
+        android:layout_toLeftOf="@+id/btnStar"
+        android:src="@drawable/ic_action_retweet"
+        android:background="#FFF"  />
 
 </RelativeLayout>

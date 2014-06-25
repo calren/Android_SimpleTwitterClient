@@ -135,6 +135,7 @@ public class TimelineActivity extends Activity {
     		Tweet tweet = (Tweet) data.getSerializableExtra("tweet");
     		aTweets.insert(tweet, 0);
     	    aTweets.notifyDataSetChanged();
+    	    lvTweets.setSelection(0);
     	}
 	}
 
