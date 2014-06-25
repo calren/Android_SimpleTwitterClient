@@ -47,4 +47,15 @@
         android:text="time posted"
         android:textColor="#a8a8a8"  />
 
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignRight="@+id/tvTime"
+        android:layout_below="@+id/tvBody"
+        android:layout_marginRight="31dp"
+        android:src="@drawable/ic_action_reply"
+        android:background="#FFF"
+        android:onclick="replyOrDelete" />
+
 </RelativeLayout>
