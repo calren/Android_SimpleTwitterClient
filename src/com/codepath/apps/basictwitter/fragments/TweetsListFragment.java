@@ -28,7 +28,7 @@ public class TweetsListFragment extends Fragment {
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		View v = inflater.inflate(R.layout.fragment_tweets_list, container, false);
-		lvTweets = (ListView) v.findViewById(R.id.fragment_timeline);
+		lvTweets = (ListView) v.findViewById(R.id.lvTweets);
 		lvTweets.setAdapter(aTweets);
 		lvTweets.setOnScrollListener(new EndlessScrollListener() {
 			@Override
