@@ -2,23 +2,18 @@ package com.codepath.apps.basictwitter;
 
 import org.json.JSONObject;
 
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.codepath.apps.basictwitter.models.User;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import android.app.Activity;
-import android.app.ActionBar;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.os.Build;
-
-public class ProfileActivity extends Activity {
+public class ProfileActivity extends FragmentActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,16 +25,16 @@ public class ProfileActivity extends Activity {
 		client.getAccountInfo(new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(JSONObject json) {
-//				ImageView ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage);
-//				TextView tvUserName = (TextView) findViewById(R.id.tvUserName);
+				ImageView ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage);
+				TextView tvUserName = (TextView) findViewById(R.id.tvUserName);
 //				TextView tvScreenName = (TextView) findViewById(R.id.tvScreenname);
 //				System.out.println("loaded");
-//				ImageLoader imageLoader = ImageLoader.getInstance();
+				ImageLoader imageLoader = ImageLoader.getInstance();
 				User user = User.fromJSON(json);
 				getActionBar().setTitle("@" + user.getScreenName());
 //
-//				imageLoader.displayImage(user.getProfileImageUrl(), ivProfileImage);
-//				tvUserName.setText(user.getName());
+				imageLoader.displayImage(user.getProfileImageUrl(), ivProfileImage);
+				tvUserName.setText(user.getName());
 //				tvScreenName.setText("@" + user.getScreenName());
 			}
 			
