@@ -92,9 +92,17 @@ public class TimelineActivity extends FragmentActivity {
             case R.id.action_compose:
                 openCompose();
                 return true;
+            case R.id.action_profile:
+            	openMyProfile();
+            	return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+    
+    public void openMyProfile() {
+        Intent i = new Intent(TimelineActivity.this, ProfileActivity.class);
+        startActivity(i);
     }
     
 //    @Override
