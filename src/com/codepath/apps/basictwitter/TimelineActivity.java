@@ -1,109 +1,47 @@
 package com.codepath.apps.basictwitter;
 
-import java.util.ArrayList;
-
 import org.json.JSONArray;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
 
+import com.codepath.apps.basictwitter.fragments.TweetsListFragment;
 import com.codepath.apps.basictwitter.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
-import eu.erikw.PullToRefreshListView;
-import eu.erikw.PullToRefreshListView.OnRefreshListener;
-
-public class TimelineActivity extends Activity {
-
-	private TwitterClient client;
-	private ArrayList<Tweet> tweets;
-	private ArrayAdapter<Tweet> aTweets;
+public class TimelineActivity extends FragmentActivity {
 	
-	private PullToRefreshListView lvTweets;
 	private String max_id;
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_timeline);
-		client = TwitterApplication.getRestClient();
-		populateTimeline();
-		lvTweets = (PullToRefreshListView) findViewById(R.id.lvTweets);
-		tweets = new ArrayList<Tweet>();
-		aTweets = new TweetArrayAdapter(this, tweets);
-		lvTweets.setAdapter(aTweets);
-		lvTweets.setOnScrollListener(new EndlessScrollListener() {
-			@Override
-		    public void onLoadMore(int page, int totalItemsCount) {
-	                // Triggered only when new data needs to be appended to the list
-	                // Add whatever code is needed to append new items to your AdapterView
-		        customLoadMoreDataFromApi(page); 
-	                // or customLoadMoreDataFromApi(totalItemsCount); 
-		    }
-	        });
-		lvTweets.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                // Your code to refresh the list contents
-                // Make sure you call listView.onRefreshComplete()
-                // once the loading is done. This can be done from here or any
-                // place such as when the network request has completed successfully.
-                fetchTimelineAsync(0);
-            }
-        });
+
+
+//		lvTweets.setOnItemClickListener(new OnItemClickListener() {
+//			public void onItemClick(AdapterView<?> parent, View view,
+//					int position, long id) {
+//				aTweets.notifyDataSetChanged();
+//			}
+//		});
+		
+//		lvTweets.setOnRefreshListener(new OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                // Your code to refresh the list contents
+//                // Make sure you call listView.onRefreshComplete()
+//                // once the loading is done. This can be done from here or any
+//                // place such as when the network request has completed successfully.
+//                fetchTimelineAsync(0);
+//            }
+//        });
 	}
-	
-	public void fetchTimelineAsync(int page) {
-        populateTimeline();
-    }
-	
-	public void customLoadMoreDataFromApi(int offset) {
-	      // This method probably sends out a network request and appends new data items to your adapter. 
-	      // Use the offset value and add it as a parameter to your API request to retrieve paginated data.
-	      // Deserialize API response and then construct new objects to append to the adapter
-		populateTimeline(max_id);
-	}
-	
-	public void populateTimeline() {
-		client.getHomeTimeline(new JsonHttpResponseHandler() {
-			
-			@Override
-			public void onSuccess(JSONArray json) {
-				aTweets.addAll(Tweet.fromJSONArray(json));
-				max_id = aTweets.getItem(tweets.size()-1).getId();
-				lvTweets.onRefreshComplete();
-			}
-			
-			@Override
-			public void onFailure(Throwable e, String s) {
-				Log.d("debug", e.toString());
-			}
-		});
-	}
-	
-	public void populateTimeline(String lastTweetID) {
-		client.getHomeTimeline(new JsonHttpResponseHandler() {
-			
-			@Override
-			public void onSuccess(JSONArray json) {
-				aTweets.addAll(Tweet.fromJSONArray(json));
-				max_id = aTweets.getItem(tweets.size()-1).getId();
-			}
-			
-			@Override
-			public void onFailure(Throwable e, String s) {
-				Log.d("debug", e.toString());
-			}
-		}, lastTweetID);
-	}
-	
-	
 	
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -129,14 +67,14 @@ public class TimelineActivity extends Activity {
         startActivityForResult(i, 100);
     }
     
-    @Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    	if (resultCode == RESULT_OK) {
-    		Tweet tweet = (Tweet) data.getSerializableExtra("tweet");
-    		aTweets.insert(tweet, 0);
-    	    aTweets.notifyDataSetChanged();
-    	    lvTweets.setSelection(0);
-    	}
-	}
+//    @Override
+//	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//    	if (resultCode == RESULT_OK) {
+//    		Tweet tweet = (Tweet) data.getSerializableExtra("tweet");
+//    		aTweets.insert(tweet, 0);
+//    	    aTweets.notifyDataSetChanged();
+//    	    lvTweets.setSelection(0);
+//    	}
+//	}
 
 }

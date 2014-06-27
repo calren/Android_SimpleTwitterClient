@@ -45,8 +45,6 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 			@Override
 			public void onClick(View v) {
 				ibStar.setImageResource(R.drawable.ic_action_star);
-				ibStar.refreshDrawableState();
-				System.out.println("filled star");
 			}
 		});
 		
@@ -57,9 +55,12 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 
 		String date = tweet.getCreatedAt().replace(" ago", "");
 		date = date.replace(" minutes", "m");
+		date = date.replace(" minute", "m");
 		date = date.replace(" hours", "h");
+		date = date.replace(" hour", "h");
 		date = date.replace(" days", "d");
-		if (date.contains("seconds")) {
+		date = date.replace(" day", "d");
+		if (date.contains("second")) {
 			date = "Just now";
 		}
 		
