@@ -52,7 +52,6 @@ public class UserProfileActivity extends FragmentActivity {
 			}
 		},getIntent().getStringExtra("user"));
 		
-		System.out.println("user: " + getIntent().getStringExtra("user"));
 	}
 
 	@Override
