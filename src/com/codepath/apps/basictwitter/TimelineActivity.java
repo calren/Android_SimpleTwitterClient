@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.codepath.apps.basictwitter.fragments.HomeTimelineFragment;
 import com.codepath.apps.basictwitter.fragments.MentionsTimelineFragment;
@@ -22,25 +23,6 @@ public class TimelineActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_timeline);
 		setupTabs();
-
-
-//		lvTweets.setOnItemClickListener(new OnItemClickListener() {
-//			public void onItemClick(AdapterView<?> parent, View view,
-//					int position, long id) {
-//				aTweets.notifyDataSetChanged();
-//			}
-//		});
-		
-//		lvTweets.setOnRefreshListener(new OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                // Your code to refresh the list contents
-//                // Make sure you call listView.onRefreshComplete()
-//                // once the loading is done. This can be done from here or any
-//                // place such as when the network request has completed successfully.
-//                fetchTimelineAsync(0);
-//            }
-//        });
 	}
     
     private void setupTabs() {
@@ -104,6 +86,7 @@ public class TimelineActivity extends FragmentActivity {
         Intent i = new Intent(TimelineActivity.this, ProfileActivity.class);
         startActivity(i);
     }
+
     
 //    @Override
 //	protected void onActivityResult(int requestCode, int resultCode, Intent data) {

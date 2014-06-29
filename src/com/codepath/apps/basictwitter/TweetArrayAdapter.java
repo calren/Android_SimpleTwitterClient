@@ -3,6 +3,7 @@ package com.codepath.apps.basictwitter;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,13 +32,23 @@ public class TweetArrayAdapter extends ArrayAdapter<Tweet> {
 			v = convertView;
 		}
 				
-		ImageView ivProfileImage = (ImageView) v.findViewById(R.id.ivProfileImage);
+		final ImageView ivProfileImage = (ImageView) v.findViewById(R.id.ivProfileImage);
+		ivProfileImage.setTag(tweet.getUser().getScreenName());
 		TextView tvUserName = (TextView) v.findViewById(R.id.tvUserName);
 		TextView tvBody = (TextView) v.findViewById(R.id.tvBody);
 		ivProfileImage.setImageResource(android.R.color.transparent);
 		ImageLoader imageLoader = ImageLoader.getInstance();
 		TextView tvScreenName = (TextView) v.findViewById(R.id.tvScreenname);
 		TextView tvTimeCreated = (TextView) v.findViewById(R.id.tvTime);
+		
+		ivProfileImage.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(getContext(), UserProfileActivity.class);
+				i.putExtra("user", ivProfileImage.getTag().toString()); 
+				getContext().startActivity(i);
+			}
+		});
 		
 		ibStar = (ImageButton) v.findViewById(R.id.btnStar);
 		

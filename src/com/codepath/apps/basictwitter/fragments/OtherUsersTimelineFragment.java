@@ -4,28 +4,48 @@ import org.json.JSONArray;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListView;
 
+import com.codepath.apps.basictwitter.EndlessScrollListener;
+import com.codepath.apps.basictwitter.R;
 import com.codepath.apps.basictwitter.TwitterApplication;
 import com.codepath.apps.basictwitter.TwitterClient;
+import com.codepath.apps.basictwitter.UserProfileActivity;
 import com.codepath.apps.basictwitter.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
-public class HomeTimelineFragment extends TweetsListFragment {
+public class OtherUsersTimelineFragment extends TweetsListFragment {
 	
 	private TwitterClient client;
-	private String max_id;
+	String user;
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		client = TwitterApplication.getRestClient();
+		String user = getArguments().getString("user", "");	
+		System.out.println(user);
 		populateTimeline();
+		
+//		UserProfileActivity activity = (UserProfileActivity) getActivity();
+//		System.out.println(activity.getUser());
 	}
+	
+	public static OtherUsersTimelineFragment newInstance(String user) {
+		OtherUsersTimelineFragment fragment = new OtherUsersTimelineFragment();
+        Bundle args = new Bundle();
+        args.putString("user", "blah");
+        fragment.setArguments(args);
+        return fragment;
+    }
 
 	@Override
     public void populateTimeline() {
-		String max_id = "";
-		client.getHomeTimeline(new JsonHttpResponseHandler() {
+		client.getUserTimeline(new JsonHttpResponseHandler() {
 
 			@Override
 			public void onSuccess(JSONArray json) {
@@ -40,10 +60,10 @@ public class HomeTimelineFragment extends TweetsListFragment {
 			}
 		});
 	}
-
+    
     @Override
 	public void populateTimeline(String lastTweetID) {
-		client.getHomeTimeline(new JsonHttpResponseHandler() {
+		client.getUserTimeline(new JsonHttpResponseHandler() {
 
 			@Override
 			public void onSuccess(JSONArray json) {

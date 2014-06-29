@@ -18,9 +18,18 @@ public class UserTimelineFragment extends TweetsListFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		client = TwitterApplication.getRestClient();
 		populateTimeline();
 	}
+	
+	public static UserTimelineFragment newInstance(String user) {
+		UserTimelineFragment fragment = new UserTimelineFragment();
+        Bundle args = new Bundle();
+        args.putString("user", "blah");
+        fragment.setArguments(args);
+        return fragment;
+    }
 
 
     public void populateTimeline() {
