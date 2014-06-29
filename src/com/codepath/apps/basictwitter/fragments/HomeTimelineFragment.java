@@ -22,8 +22,9 @@ public class HomeTimelineFragment extends TweetsListFragment {
 		populateTimeline();
 	}
 
-
+	@Override
     public void populateTimeline() {
+		String max_id = "";
 		client.getHomeTimeline(new JsonHttpResponseHandler() {
 
 			@Override
@@ -40,6 +41,7 @@ public class HomeTimelineFragment extends TweetsListFragment {
 		});
 	}
 
+    @Override
 	public void populateTimeline(String lastTweetID) {
 		client.getHomeTimeline(new JsonHttpResponseHandler() {
 
