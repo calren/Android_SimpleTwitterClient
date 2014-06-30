@@ -32,7 +32,6 @@ public class ComposeActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-		
 		client = TwitterApplication.getRestClient();
 
 		client.getAccountInfo(new JsonHttpResponseHandler() {

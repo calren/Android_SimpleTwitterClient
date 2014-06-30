@@ -57,6 +57,12 @@ public class TweetsListFragment extends Fragment {
 
 	}
 	
+	public void addTweet(Tweet tweet) {
+		aTweets.insert(tweet, 0);
+	    aTweets.notifyDataSetChanged();
+	    lvTweets.setSelection(0);
+	}
+	
     public void populateTimeline() {
 		client.getHomeTimeline(new JsonHttpResponseHandler() {
 

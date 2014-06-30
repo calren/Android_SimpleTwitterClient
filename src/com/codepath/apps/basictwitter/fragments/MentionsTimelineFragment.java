@@ -45,7 +45,6 @@ public class MentionsTimelineFragment extends TweetsListFragment {
 				@Override
 				public void onSuccess(JSONArray json) {
 					addAll(Tweet.fromJSONArray(json));
-//					max_id = getItem(tweets.size()-1).getId();
 				}
 
 				@Override

@@ -7,11 +7,12 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.codepath.apps.basictwitter.fragments.HomeTimelineFragment;
 import com.codepath.apps.basictwitter.fragments.MentionsTimelineFragment;
+import com.codepath.apps.basictwitter.fragments.TweetsListFragment;
 import com.codepath.apps.basictwitter.listeners.FragmentTabListener;
+import com.codepath.apps.basictwitter.models.Tweet;
 
 public class TimelineActivity extends FragmentActivity {
 	
@@ -88,14 +89,15 @@ public class TimelineActivity extends FragmentActivity {
     }
 
     
-//    @Override
-//	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//    	if (resultCode == RESULT_OK) {
-//    		Tweet tweet = (Tweet) data.getSerializableExtra("tweet");
-//    		aTweets.insert(tweet, 0);
-//    	    aTweets.notifyDataSetChanged();
-//    	    lvTweets.setSelection(0);
-//    	}
-//	}
+    @Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    	if (resultCode == RESULT_OK) {
+    		Tweet tweet = (Tweet) data.getSerializableExtra("tweet");
+    		System.out.println(tweet.getBody());
+    		TweetsListFragment fragment = (TweetsListFragment) 
+    	            getSupportFragmentManager().findFragmentById(R.id.flContainer);
+    		fragment.addTweet(tweet);
+    	}
+	}
 
 }
