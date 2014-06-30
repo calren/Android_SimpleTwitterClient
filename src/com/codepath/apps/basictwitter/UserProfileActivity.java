@@ -23,7 +23,7 @@ public class UserProfileActivity extends FragmentActivity {
 		
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		UserTimelineFragment fragment = UserTimelineFragment.newInstance(getIntent().getStringExtra("user"));
-		ft.replace(R.id.fragmentUserTimeline, fragment);
+		ft.replace(R.id.flContainer, fragment);
 		ft.commit();
 		
 		setContentView(R.layout.activity_user_profile);

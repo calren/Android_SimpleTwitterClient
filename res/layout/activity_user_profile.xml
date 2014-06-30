@@ -31,14 +31,16 @@
         
     </RelativeLayout>
 
-    <fragment
-        android:id="@+id/fragmentUserTimeline"
-        android:name="com.codepath.apps.basictwitter.fragments.UserTimelineFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <FrameLayout
+        android:id="@+id/flContainer"
         android:layout_marginTop="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        tools:layout="@layout/fragment_tweets_list" />
+        android:layout_alignParentTop="true" >
+
+    </FrameLayout>
 
 </FrameLayout>

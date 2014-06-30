@@ -4,11 +4,13 @@ import org.json.JSONObject;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.codepath.apps.basictwitter.fragments.UserTimelineFragment;
 import com.codepath.apps.basictwitter.models.User;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -36,6 +38,11 @@ public class ProfileActivity extends FragmentActivity {
 				imageLoader.displayImage(user.getProfileImageUrl(), ivProfileImage);
 				tvUserName.setText(user.getName());
 //				tvScreenName.setText("@" + user.getScreenName());
+				
+				FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+				UserTimelineFragment fragment = UserTimelineFragment.newInstance(user.getScreenName());
+				ft.replace(R.id.flContainer, fragment);
+				ft.commit();
 			}
 			
 			@Override

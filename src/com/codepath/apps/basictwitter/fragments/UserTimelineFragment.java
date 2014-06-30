@@ -13,13 +13,14 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 public class UserTimelineFragment extends TweetsListFragment {
 	
 	private TwitterClient client;
+	String user = "";
 	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		String user = getArguments().getString("user", "blah");
+		user = getArguments().getString("user", "");
 		System.out.println(user);
 		
 		client = TwitterApplication.getRestClient();
@@ -29,7 +30,7 @@ public class UserTimelineFragment extends TweetsListFragment {
 	public static UserTimelineFragment newInstance(String user) {
 		UserTimelineFragment fragment = new UserTimelineFragment();
         Bundle args = new Bundle();
-        args.putString("user", "blah");
+        args.putString("user", user);
         fragment.setArguments(args);
         return fragment;
     }
@@ -49,24 +50,24 @@ public class UserTimelineFragment extends TweetsListFragment {
 			public void onFailure(Throwable e, String s) {
 				Log.d("debug", e.toString());
 			}
-		});
+		}, user);
 	}
     
-    @Override
-	public void populateTimeline(String lastTweetID) {
-		client.getUserTimeline(new JsonHttpResponseHandler() {
-
-			@Override
-			public void onSuccess(JSONArray json) {
-				addAll(Tweet.fromJSONArray(json));
-//				max_id = getItem(tweets.size()-1).getId();
-			}
-
-			@Override
-			public void onFailure(Throwable e, String s) {
-				Log.d("debug", e.toString());
-			}
-		}, lastTweetID);
-	}
+//    @Override
+//	public void populateTimeline(String lastTweetID) {
+//		client.getUserTimeline(new JsonHttpResponseHandler() {
+//
+//			@Override
+//			public void onSuccess(JSONArray json) {
+//				addAll(Tweet.fromJSONArray(json));
+////				max_id = getItem(tweets.size()-1).getId();
+//			}
+//
+//			@Override
+//			public void onFailure(Throwable e, String s) {
+//				Log.d("debug", e.toString());
+//			}
+//		}, lastTweetID);
+//	}
 
 }
