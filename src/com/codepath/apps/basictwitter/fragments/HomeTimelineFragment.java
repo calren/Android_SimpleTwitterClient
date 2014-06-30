@@ -14,6 +14,7 @@ public class HomeTimelineFragment extends TweetsListFragment {
 	
 	private TwitterClient client;
 	private String max_id;
+	private int page = 1;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -24,21 +25,20 @@ public class HomeTimelineFragment extends TweetsListFragment {
 
 	@Override
     public void populateTimeline() {
-		String max_id = "";
 		client.getHomeTimeline(new JsonHttpResponseHandler() {
 
 			@Override
 			public void onSuccess(JSONArray json) {
 				addAll(Tweet.fromJSONArray(json));
-//				max_id = getItem(tweets.size()-1).getId();
-//				lvTweets.onRefreshComplete();
+
 			}
 
 			@Override
 			public void onFailure(Throwable e, String s) {
 				Log.d("debug", e.toString());
 			}
-		});
+		}, Integer.toString(page));
+		page++;
 	}
 
     @Override
@@ -55,7 +55,8 @@ public class HomeTimelineFragment extends TweetsListFragment {
 			public void onFailure(Throwable e, String s) {
 				Log.d("debug", e.toString());
 			}
-		}, lastTweetID);
+		}, Integer.toString(page));
+		page++;
 	}
 
 }
