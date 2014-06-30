@@ -1,6 +1,7 @@
 package com.codepath.apps.basictwitter;
 
-import org.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.codepath.apps.basictwitter.fragments.UserTimelineFragment;
+import com.codepath.apps.basictwitter.models.Tweet;
 import com.codepath.apps.basictwitter.models.User;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -26,19 +28,26 @@ public class UserProfileActivity extends FragmentActivity {
 		ft.replace(R.id.flContainer, fragment);
 		ft.commit();
 		
+		System.out.println("user is : " + getIntent().getStringExtra("user"));
 		setContentView(R.layout.activity_user_profile);
 		
 		TwitterClient client = TwitterApplication.getRestClient();
 
+		System.out.println("before json call");
 		client.getAccountInfo(new JsonHttpResponseHandler() {
 			@Override
-			public void onSuccess(JSONObject json) {
+			public void onSuccess(JSONArray json) {
+				User user = new User();
 				ImageView ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage);
 				TextView tvUserName = (TextView) findViewById(R.id.tvUserName);
 //				TextView tvScreenName = (TextView) findViewById(R.id.tvScreenname);
-//				System.out.println("loaded");
 				ImageLoader imageLoader = ImageLoader.getInstance();
-				User user = User.fromJSON(json);
+				try {
+					user = User.fromJSON(json.getJSONObject(2).getJSONObject("user"));
+				} catch (JSONException e1) {
+					e1.printStackTrace();
+				}
+
 				getActionBar().setTitle("@" + user.getScreenName());
 //
 				imageLoader.displayImage(user.getProfileImageUrl(), ivProfileImage);
@@ -50,8 +59,8 @@ public class UserProfileActivity extends FragmentActivity {
 			public void onFailure(Throwable e, String s) {
 				e.printStackTrace();
 			}
-		},getIntent().getStringExtra("user"));
-		
+		}, getIntent().getStringExtra("user") );
+		System.out.println("after json call");
 	}
 
 	@Override
