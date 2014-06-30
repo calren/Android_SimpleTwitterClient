@@ -63,8 +63,6 @@ public class TweetsListFragment extends Fragment {
 			@Override
 			public void onSuccess(JSONArray json) {
 				addAll(Tweet.fromJSONArray(json));
-//				max_id = getItem(tweets.size()-1).getId();
-//				lvTweets.onRefreshComplete();
 			}
 
 			@Override
@@ -75,19 +73,18 @@ public class TweetsListFragment extends Fragment {
 	}
 	
 	public void populateTimeline(String lastTweetID) {
-//		client.getHomeTimeline(new JsonHttpResponseHandler() {
-//
-//			@Override
-//			public void onSuccess(JSONArray json) {
-//				addAll(Tweet.fromJSONArray(json));
-//				max_id = aTweets.getItem(tweets.size()-1).getId();
-//			}
-//
-//			@Override
-//			public void onFailure(Throwable e, String s) {
-//				Log.d("debug", e.toString());
-//			}
-//		}, lastTweetID);
+		client.getHomeTimeline(new JsonHttpResponseHandler() {
+
+			@Override
+			public void onSuccess(JSONArray json) {
+				addAll(Tweet.fromJSONArray(json));
+			}
+
+			@Override
+			public void onFailure(Throwable e, String s) {
+				Log.d("debug", e.toString());
+			}
+		}, lastTweetID);
 	}
 	
 	public void addAll(ArrayList<Tweet> tweets) {

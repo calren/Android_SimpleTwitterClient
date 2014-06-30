@@ -26,11 +26,9 @@ public class HomeTimelineFragment extends TweetsListFragment {
 	@Override
     public void populateTimeline() {
 		client.getHomeTimeline(new JsonHttpResponseHandler() {
-
 			@Override
 			public void onSuccess(JSONArray json) {
 				addAll(Tweet.fromJSONArray(json));
-
 			}
 
 			@Override

@@ -28,8 +28,7 @@ public class MentionsTimelineFragment extends TweetsListFragment {
 				@Override
 				public void onSuccess(JSONArray json) {
 					addAll(Tweet.fromJSONArray(json));
-//					max_id = getItem(tweets.size()-1).getId();
-//					lvTweets.onRefreshComplete();
+
 				}
 
 				@Override
@@ -55,13 +54,6 @@ public class MentionsTimelineFragment extends TweetsListFragment {
 				}
 			}, lastTweetID);
 		}
-	    
-//		public void customLoadMoreDataFromApi(int offset) {
-//		      // This method probably sends out a network request and appends new data items to your adapter. 
-//		      // Use the offset value and add it as a parameter to your API request to retrieve paginated data.
-//		      // Deserialize API response and then construct new objects to append to the adapter
-////			populateTimeline(max_id);
-//		}
 		
 		public void fetchTimelineAsync(int page) {
 	      populateTimeline();
