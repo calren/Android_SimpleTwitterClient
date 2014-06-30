@@ -14,6 +14,8 @@ public class UserTimelineFragment extends TweetsListFragment {
 	
 	private TwitterClient client;
 	String user = "";
+	String max_id = "";
+	int page = 1;
 	
 
 	@Override
@@ -24,7 +26,7 @@ public class UserTimelineFragment extends TweetsListFragment {
 		System.out.println(user);
 		
 		client = TwitterApplication.getRestClient();
-		populateTimeline();
+		populateTimeline("blah");
 	}
 	
 	public static UserTimelineFragment newInstance(String user) {
@@ -34,40 +36,24 @@ public class UserTimelineFragment extends TweetsListFragment {
         fragment.setArguments(args);
         return fragment;
     }
-
-
-    public void populateTimeline() {
-		client.getUserTimeline(new JsonHttpResponseHandler() {
+    
+    @Override
+	public void populateTimeline(String lastTweetID) {
+		client.getUserTimelinePage(new JsonHttpResponseHandler() {
 
 			@Override
 			public void onSuccess(JSONArray json) {
 				addAll(Tweet.fromJSONArray(json));
 //				max_id = getItem(tweets.size()-1).getId();
-//				lvTweets.onRefreshComplete();
 			}
 
 			@Override
 			public void onFailure(Throwable e, String s) {
 				Log.d("debug", e.toString());
 			}
-		}, user);
+		}, user, Integer.toString(page));
+		
+		page++;
 	}
-    
-//    @Override
-//	public void populateTimeline(String lastTweetID) {
-//		client.getUserTimeline(new JsonHttpResponseHandler() {
-//
-//			@Override
-//			public void onSuccess(JSONArray json) {
-//				addAll(Tweet.fromJSONArray(json));
-////				max_id = getItem(tweets.size()-1).getId();
-//			}
-//
-//			@Override
-//			public void onFailure(Throwable e, String s) {
-//				Log.d("debug", e.toString());
-//			}
-//		}, lastTweetID);
-//	}
 
 }
