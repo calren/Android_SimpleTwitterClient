@@ -2,6 +2,7 @@ package com.codepath.apps.basictwitter;
 
 import org.json.JSONObject;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -21,6 +22,8 @@ public class ProfileActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_profile);
+		
+		getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.blue)));
 		
 		TwitterClient client = TwitterApplication.getRestClient();
 

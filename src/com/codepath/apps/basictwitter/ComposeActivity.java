@@ -5,6 +5,7 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,7 +32,8 @@ public class ComposeActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		getActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.blue)));
+
 		client = TwitterApplication.getRestClient();
 
 		client.getAccountInfo(new JsonHttpResponseHandler() {
