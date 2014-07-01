@@ -29,15 +29,18 @@ public class ProfileActivity extends FragmentActivity {
 			public void onSuccess(JSONObject json) {
 				ImageView ivProfileImage = (ImageView) findViewById(R.id.ivProfileImage);
 				TextView tvUserName = (TextView) findViewById(R.id.tvUserName);
-//				TextView tvScreenName = (TextView) findViewById(R.id.tvScreenname);
-//				System.out.println("loaded");
+				TextView tvTagline = (TextView) findViewById(R.id.tvTagline);
+				TextView tvFollowing = (TextView) findViewById(R.id.tvFollowing);
+				TextView tvFollowers = (TextView) findViewById(R.id.tvFollowers);
 				ImageLoader imageLoader = ImageLoader.getInstance();
+				
 				User user = User.fromJSON(json);
 				getActionBar().setTitle("@" + user.getScreenName());
-//
 				imageLoader.displayImage(user.getProfileImageUrl(), ivProfileImage);
 				tvUserName.setText(user.getName());
-//				tvScreenName.setText("@" + user.getScreenName());
+				tvTagline.setText(user.getTagline());
+				tvFollowing.setText(user.getFollowingCount() + " Following");
+				tvFollowers.setText(user.getFollowersCount() + " Followers");
 				
 				FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 				UserTimelineFragment fragment = UserTimelineFragment.newInstance(user.getScreenName());

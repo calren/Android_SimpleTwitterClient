@@ -3,6 +3,7 @@ package com.codepath.apps.basictwitter;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
@@ -30,6 +31,8 @@ public class TimelineActivity extends FragmentActivity {
 		ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		actionBar.setDisplayShowTitleEnabled(true);
+		actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.blue)));
+		actionBar.setStackedBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
 
 		Tab tab1 = actionBar
 			.newTab()

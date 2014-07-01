@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/ivProfileImage"
+        android:layout_marginLeft="6dp"
         android:text="\@foo" />
 
     <TextView
@@ -49,34 +50,34 @@
         android:textColor="#a8a8a8"  />
 
     <ImageButton
+        android:id="@+id/btnRetweet"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_below="@+id/tvBody"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="50dp"
+        android:background="#FFF"
+        android:src="@drawable/ic_action_retweet" />
+
+    <ImageButton
         android:id="@+id/btnReply"
         android:layout_width="18dp"
         android:layout_height="18dp"
-        android:layout_alignRight="@+id/tvTime"
-        android:layout_below="@+id/tvBody"
-        android:layout_marginRight="31dp"
-        android:src="@drawable/ic_action_reply"
+        android:layout_alignTop="@+id/btnRetweet"
+        android:layout_toRightOf="@+id/btnStar"
+        android:layout_marginLeft="80dp"
         android:background="#FFF"
-        android:onClick="replyOrDelete" />
+        android:onClick="replyOrDelete"
+        android:src="@drawable/ic_action_reply" />
 
     <ImageButton
         android:id="@+id/btnStar"
         android:layout_width="18dp"
         android:layout_height="18dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignBottom="@+id/btnReply"
-        android:layout_toLeftOf="@+id/btnReply"
-        android:src="@drawable/ic_action_star_before"
-        android:background="#FFF" />
-
-    <ImageButton
-        android:id="@+id/btnRetweet"
-        android:layout_width="18dp"
-        android:layout_height="18dp"
-        android:layout_alignBottom="@+id/btnReply"
-        android:layout_marginRight="20dp"
-        android:layout_toLeftOf="@+id/btnStar"
-        android:src="@drawable/ic_action_retweet"
-        android:background="#FFF"  />
+        android:layout_alignTop="@+id/btnRetweet"
+        android:layout_toRightOf="@+id/btnRetweet"
+        android:layout_marginLeft="80dp"
+        android:background="#FFF"
+        android:src="@drawable/ic_action_star_before" />
 
 </RelativeLayout>
