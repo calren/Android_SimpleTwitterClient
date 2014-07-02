@@ -17,10 +17,24 @@ Completed user stories:
 - User can then enter a new tweet and post this to twitter
 - User is taken back to home timeline with new tweet visible in timeline
 
+Part 2:
+
+* [x] Required: User can switch between Timeline and Mention views using tabs.
+User can view their home timeline tweets.
+User can view the recent mentions of their username.
+User can scroll to bottom of either of these lists and new tweets will load ("infinite scroll")
+* [x] Required: User can navigate to view their own profile
+User can see picture, tagline, # of followers, # of following, and tweets on their profile.
+* [x] Required:  User can click on the profile image in any tweet to see another user's profile.
+User can see picture, tagline, # of followers, # of following, and tweets of clicked user.
+Profile view should include that user's timeline
+
+
  * [x] Optional: Did some styling to make it look a little more like twitter
 
  
 Walkthrough of all user stories:
 
+![Video Walkthrough](twitterp2.gif)
 ![Video Walkthrough](twitter2.gif)
 
